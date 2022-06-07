@@ -100,11 +100,12 @@ public class CollectPerformanceTest {
     @Test
     public void testMetricsFormatter() throws Exception {
         for (int a = 0; a < 10; a++) {
+            System.out.println("collect metrics start");
             ByteBuf buffer = ByteBufAllocator.DEFAULT.compositeDirectBuffer(256);
             TextFormatter.MetricsWriter writer = new ByteBufferMetricsWriter(buffer);
             TextFormat.write004(writer, CollectorRegistry.defaultRegistry.metricFamilySamples());
-            System.out.println(buffer.readableBytes());
             writer.close();
+            System.out.println("collect metrics finished");
             Thread.sleep(30000);
         }
     }
@@ -112,6 +113,7 @@ public class CollectPerformanceTest {
     @Test
     public void testPrometheusTextFormat() throws Exception {
         for (int a = 0; a < 10; a++) {
+            System.out.println("collect metrics start");
             ByteBuf buffer1 = ByteBufAllocator.DEFAULT.compositeDirectBuffer(256);
             TextFormatter.MetricsWriter mainWriter = new ByteBufferMetricsWriter(buffer1);
 
@@ -125,9 +127,9 @@ public class CollectPerformanceTest {
                     return true;
                 }
             });
-            System.out.println(buffer1.readableBytes());
             mainWriter.close();
             subWriter.close();
+            System.out.println("collect metrics finished");
             Thread.sleep(30000);
         }
     }
