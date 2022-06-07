@@ -136,7 +136,7 @@ public class CollectPerformanceTest {
 
 
     public static final class ByteBufferMetricsWriter extends TextFormatter.MetricsWriter {
-        private static final Charset CHARSET = StandardCharsets.UTF_8;
+        private static final Charset CHARSET = Charset.forName("UTF-8");
         private final ByteBuf buffer;
 
         public ByteBufferMetricsWriter(ByteBuf buffer) {
