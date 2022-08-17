@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.prometheus</groupId>
         <artifactId>parent</artifactId>
-        <version>0.15.1-SNAPSHOT</version>
+        <version>0.16.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>simpleclient_log4j</artifactId>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient</artifactId>
-            <version>0.15.1-SNAPSHOT</version>
+            <version>0.16.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.4.0</version>
+            <version>4.6.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

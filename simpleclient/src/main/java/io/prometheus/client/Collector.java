@@ -4,9 +4,7 @@ package io.prometheus.client;
 import io.prometheus.client.exemplars.Exemplar;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**

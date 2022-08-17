@@ -46,25 +46,25 @@ version can be found on in the maven repository for
 <dependency>
   <groupId>io.prometheus</groupId>
   <artifactId>simpleclient</artifactId>
-  <version>0.15.0</version>
+  <version>0.16.0</version>
 </dependency>
 <!-- Hotspot JVM metrics-->
 <dependency>
   <groupId>io.prometheus</groupId>
   <artifactId>simpleclient_hotspot</artifactId>
-  <version>0.15.0</version>
+  <version>0.16.0</version>
 </dependency>
 <!-- Exposition HTTPServer-->
 <dependency>
   <groupId>io.prometheus</groupId>
   <artifactId>simpleclient_httpserver</artifactId>
-  <version>0.15.0</version>
+  <version>0.16.0</version>
 </dependency>
 <!-- Pushgateway exposition-->
 <dependency>
   <groupId>io.prometheus</groupId>
   <artifactId>simpleclient_pushgateway</artifactId>
-  <version>0.15.0</version>
+  <version>0.16.0</version>
 </dependency>
 ```
 
@@ -73,6 +73,13 @@ There are canonical examples defined in the class definition Javadoc of the clie
 
 Documentation can be found at the [Java Client
 Github Project Page](http://prometheus.github.io/client_java).
+
+### Disabling `_created` metrics
+
+By default, counters, histograms, and summaries export an additional series
+suffixed with `_created` and a value of the unix timestamp for when the metric
+was created. If this information is not helpful, it can be disabled by setting
+the environment variable `PROMETHEUS_DISABLE_CREATED_SERIES=true`.
 
 ## Instrumenting
 

@@ -81,8 +81,10 @@ public class CollectorRegistry {
   public void unregister(Collector m) {
     synchronized (namesCollectorsLock) {
       List<String> names = collectorsToNames.remove(m);
-      for (String name : names) {
-        namesToCollectors.remove(name);
+      if (names != null) {
+        for (String name : names) {
+          namesToCollectors.remove(name);
+        }
       }
     }
   }
@@ -184,10 +186,17 @@ public class CollectorRegistry {
       } else {
         HashSet<Collector> collectors = new HashSet<Collector>();
         synchronized (namesCollectorsLock) {
-          for (Map.Entry<String, Collector> entry : namesToCollectors.entrySet()) {
-            // Note that namesToCollectors contains keys for all combinations of suffixes (_total, _info, etc.).
-            if (sampleNameFilter.test(entry.getKey())) {
-              collectors.add(entry.getValue());
+          for (Map.Entry<Collector, List<String>> entry : collectorsToNames.entrySet()) {
+            List<String> names = entry.getValue();
+            if (names.isEmpty()) {
+              collectors.add(entry.getKey());
+            } else {
+              for (String name : names) {
+                if (sampleNameFilter.test(name)) {
+                  collectors.add(entry.getKey());
+                  break;
+                }
+              }
             }
           }
         }
@@ -250,6 +259,24 @@ public class CollectorRegistry {
    */
   public Double getSampleValue(String name, String[] labelNames, String[] labelValues) {
     for (Collector.MetricFamilySamples metricFamilySamples : Collections.list(metricFamilySamples())) {
+      for (Collector.MetricFamilySamples.Sample sample : metricFamilySamples.samples) {
+        if (sample.name.equals(name)
+                && Arrays.equals(sample.labelNames.toArray(), labelNames)
+                && Arrays.equals(sample.labelValues.toArray(), labelValues)) {
+          return sample.value;
+        }
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Returns the given value, or null if it doesn't exist.
+   * <p>
+   * This is inefficient, and intended only for use in unittests.
+   */
+  public Double getSampleValue(String name, String[] labelNames, String[] labelValues, Predicate<String> sampleNameFilter) {
+    for (Collector.MetricFamilySamples metricFamilySamples : Collections.list(filteredMetricFamilySamples(sampleNameFilter))) {
       for (Collector.MetricFamilySamples.Sample sample : metricFamilySamples.samples) {
         if (sample.name.equals(name)
                 && Arrays.equals(sample.labelNames.toArray(), labelNames)
