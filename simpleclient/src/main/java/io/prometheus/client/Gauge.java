@@ -317,7 +317,7 @@ public class Gauge extends SimpleCollector<Gauge.Child> implements Collector.Des
           throws IOException {
     if (sampleNameFilter.test(this.fullname)) {
       formatter.format(
-              new TextFormatter.MetricSnapshotSamples(
+              new TextFormatter.GaugeMetricSnapshot(
                       fullname, unit, Type.GAUGE, help, labelNames, children));
     }
   }

@@ -397,7 +397,7 @@ public class Summary extends SimpleCollector<Summary.Child> implements Counter.D
           throws IOException {
     if (sampleNameFilter.test(this.fullname)) {
       formatter.format(
-              new TextFormatter.MetricSnapshotSamples(
+              new TextFormatter.SummaryMetricSnapshot(
                       fullname, unit, Type.SUMMARY, help, labelNames, children));
     }
   }

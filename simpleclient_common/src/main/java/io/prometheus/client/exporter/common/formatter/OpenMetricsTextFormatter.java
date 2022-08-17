@@ -14,7 +14,7 @@ public class OpenMetricsTextFormatter extends TextFormatter {
   }
 
   @Override
-  public void format(MetricSnapshotSamples samples) throws IOException {
+  public void format(MetricSnapshot samples) throws IOException {
     // TODO
   }
 

@@ -3,13 +3,12 @@ package io.prometheus.client.exporter.common;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.prometheus.client.*;
-import io.prometheus.client.exporter.common.formatter.PrometheusTextFormatter;
+import io.prometheus.client.exporter.common.formatter.prometheus.PrometheusTextFormatter;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class CollectPerformanceTest {

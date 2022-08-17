@@ -566,7 +566,7 @@ public class Histogram extends SimpleCollector<Histogram.Child> implements Colle
           throws IOException {
     if (sampleNameFilter.test(this.fullname)) {
       formatter.format(
-              new TextFormatter.HistogramMetricSnapshotSamples(
+              new TextFormatter.HistogramMetricSnapshot(
                       fullname, unit, Type.HISTOGRAM, help, labelNames, children, buckets));
     }
   }

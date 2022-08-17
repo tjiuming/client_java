@@ -356,7 +356,7 @@ public class Counter extends SimpleCollector<Counter.Child> implements Collector
           throws IOException {
     if (sampleNameFilter.test(fullname)) {
       formatter.format(
-              new TextFormatter.MetricSnapshotSamples(
+              new TextFormatter.CounterMetricSnapshot(
                       fullname, unit, Type.COUNTER, help, labelNames, children));
     }
   }
